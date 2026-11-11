@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.92, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <title>Dizzy House Studio | Potencialize seu Negócio</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.cdnfonts.com/css/monument-extended" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=20260313a">
+    <style>
+        /* Estilos complementares premium para a página de Tecnologia */
+        .tech-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            padding-top: 15px;
+        }
+        .btn-back-tech {
+            color: var(--silver);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn-back-tech:hover {
+            color: var(--text-main);
+        }
+        .tech-hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .tech-hero h1 {
+            font-size: clamp(1.6rem, 5vw, 3.2rem);
+            margin-bottom: 15px;
+            line-height: 1.1;
+            letter-spacing: 2px;
+        }
+        .tech-hero p {
+            font-size: 1.05rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #ccc;
+            line-height: 1.6;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+            width: 100%;
+        }
+        .service-card {
+            background: rgba(17, 17, 17, 0.85);
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            border: 1px solid #333;
+            border-radius: 16px;
+            padding: 35px 25px;
+            text-align: left;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--neon-red), #ff8800);
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: #555;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6), 0 0 20px rgba(255, 0, 0, 0.15);
+        }
+        .service-card:hover::before {
+            opacity: 1;
+        }
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--neon-red);
+            filter: drop-shadow(0 0 10px rgba(255,0,0,0.4));
+        }
+        .service-title {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            line-height: 1.3;
+            text-transform: uppercase;
+        }
+        .service-desc {
+            color: #aaa;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .service-tag {
+            display: inline-block;
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            color: var(--neon-red);
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            align-self: flex-start;
+        }
+        .tech-form-container {
+            width: 100%;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        .tech-btn-submit {
+            background: linear-gradient(135deg, #8b0000 0%, #ff0000 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 18px 30px;
+            font-family: var(--font-heading);
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255,0,0,0.3);
+            margin-top: 10px;
+        }
+        .tech-btn-submit:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(255,0,0,0.6);
+            background: linear-gradient(135deg, #a00000 0%, #ff3333 100%);
+        }
+        .tech-btn-submit:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+    <div class="background-wrapper">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        <div class="glow glow-3"></div>
+    </div>
+
+    <div class="container">
+        <header class="tech-header">
+            <a href="index.html" class="btn-back-tech">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6"/>
+                </svg>
+                VOLTAR
+            </a>
+            <img src="icon/logodizzy.PNG" alt="Dizzy House Studio" style="height: 5rem; width: auto; filter: drop-shadow(0 0 10px rgba(255,0,0,0.5));">
+            <div style="width: 80px;"></div> <!-- Espaçador para balancear o flexbox -->
+        </header>
+
+        <!-- Seção Hero -->
+        <section class="tech-hero">
+            <h1>POTENCIALIZE SEU NEGÓCIO</h1>
+            <p>Soluções tecnológicas de alto padrão desenvolvidas exclusivamente para elevar o patamar de estúdios de tatuagem e artistas independentes.</p>
+        </section>
+
+        <!-- Serviços Grid -->
+        <div class="services-grid">
+            <!-- Serviço 1: Criação de Sites -->
+            <div class="service-card">
+                <div>
+                    <div class="service-icon">🌐</div>
+                    <div class="service-title">Criação de Sites Premium</div>
+                    <div class="service-desc">
+                        Tenha uma presença digital de luxo. Desenvolvemos portfólios imersivos com galerias integradas, design de alto impacto e navegação otimizada para captar e converter clientes que valorizam exclusividade e arte autoral.
+                    </div>
+                </div>
+                <span class="service-tag">Design Exclusivo</span>
+            </div>
+
+            <!-- Serviço 2: Automações -->
+            <div class="service-card">
+                <div>
+                    <div class="service-icon">⚡</div>
+                    <div class="service-title">Automações para Tatuadores</div>
+                    <div class="service-desc">
+                        Ganhe tempo para focar na sua arte. Implementamos fluxos inteligentes no WhatsApp para respostas instantâneas, qualificação automática de clientes, triagem de orçamentos e envio programado de lembretes de sessões.
+                    </div>
+                </div>
+                <span class="service-tag">Eficiência Máxima</span>
+            </div>
+        </div>
+
+        <!-- Formulário de Projeto -->
+        <div class="neon-frame tech-form-container">
+            <div class="section-info">
+                <h3 style="font-size: 1.4rem; color: #fff;">INICIAR SEU PROJETO TECNOLÓGICO</h3>
+                <p style="margin-bottom: 25px;">Preencha os dados abaixo para receber uma proposta sob medida diretamente no seu WhatsApp.</p>
+            </div>
+
+            <input type="text" id="tech-name" placeholder="Seu Nome ou Nome do Estúdio">
+            
+            <select id="tech-service">
+                <option value="" disabled selected>Selecione a Solução Desejada</option>
+                <option value="Site Premium Exclusivo">Criação de Site Premium Exclusivo</option>
+                <option value="Automação de WhatsApp e Agendamento">Automação de WhatsApp e Agendamento</option>
+                <option value="Ecossistema Completo (Site + Automações)">Ecossistema Completo (Site + Automações)</option>
+            </select>
+
+            <textarea id="tech-instagram" placeholder="Link do seu Instagram (Ex: @seustudio)" rows="2"></textarea>
+            
+            <textarea id="tech-briefing" placeholder="Descreva brevemente o seu objetivo principal (Ex: Atrair clientes para projetos maiores, automatizar a triagem de orçamentos, lançar um novo portfólio, etc.)" rows="4"></textarea>
+
+            <button class="tech-btn-submit" onclick="submitTechProject()">SOLICITAR ORÇAMENTO NO WHATSAPP</button>
+        </div>
+
+        <!-- Footer Simples -->
+        <footer style="text-align: center; margin: 40px 0 20px; color: #555; font-size: 0.8rem;">
+            <p>Dizzy House Studio &copy; 2026 · Soluções em Tecnologia</p>
+        </footer>
+    </div>
+
+    <!-- Modal Customizado de Mensagens Simples -->
+    <div id="tech-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10000; align-items:center; justify-content:center; padding:20px;">
+        <div style="background:#111; border:1px solid var(--neon-red); padding:30px; border-radius:12px; text-align:center; max-width:400px; width:100%;">
+            <p id="tech-modal-msg" style="color:#fff; font-size:1.1rem; margin-bottom:20px;"></p>
+            <button onclick="document.getElementById('tech-modal').style.display='none'" style="background:var(--neon-red); color:#fff; border:none; padding:10px 25px; border-radius:6px; font-weight:bold; cursor:pointer;">OK</button>
+        </div>
+    </div>
+
+    <script>
+        function showTechAlert(msg) {
+            document.getElementById('tech-modal-msg').innerText = msg;
+            document.getElementById('tech-modal').style.display = 'flex';
+        }
+
+        function submitTechProject() {
+            const name = document.getElementById('tech-name').value.trim();
+            const serviceEl = document.getElementById('tech-service');
+            const service = serviceEl.value;
+            const insta = document.getElementById('tech-instagram').value.trim();
+            const briefing = document.getElementById('tech-briefing').value.trim();
+
+            if (!name) {
+                showTechAlert("Por favor, informe seu nome ou do estúdio.");
+                return;
+            }
+            if (!service) {
+                showTechAlert("Selecione a solução tecnológica desejada.");
+                return;
+            }
+            if (!briefing) {
+                showTechAlert("Por favor, descreva brevemente seu objetivo principal.");
+                return;
+            }
+
+            const textMessage = 
+                `🚀 *PROJETO TECNOLÓGICO | DIZZY HOUSE*\n\n` +
+                `*Nome/Estúdio:* ${name}\n` +
+                `*Solução:* ${service}\n` +
+                `*Instagram:* ${insta || 'Não informado'}\n\n` +
+                `*Objetivo/Briefing:*\n${briefing}`;
+
+            const phone = "5521976265417";
+            const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(textMessage)}`;
+            
+            window.location.href = whatsappUrl;
+        }
+    </script>
+</body>
+</html>

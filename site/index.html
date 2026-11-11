@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang='pt-br'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover'>
+    <title>Dizzy House Studio</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href='https://fonts.cdnfonts.com/css/monument-extended' rel='stylesheet'>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+        body, html {
+            height: 100%; 
+            height: -webkit-fill-available;
+            width: 100%; margin: 0; overflow: hidden;
+            display: flex; justify-content: center; align-items: center;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: #000;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overscroll-behavior: none;
+        }
+        .background-wrapper {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
+            background-color: #050505;
+        }
+        .glow {
+            position: absolute; border-radius: 50%; filter: blur(60px);
+            mix-blend-mode: screen; opacity: 0.7;
+            animation-iteration-count: infinite; animation-direction: alternate;
+            animation-timing-function: ease-in-out;
+        }
+        .glow-1 {
+            width: 80vw; height: 80vw;
+            background: radial-gradient(circle, rgba(255, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 70%);
+            top: -20%; left: -20%; animation: moveLight1 10s infinite alternate;
+        }
+        .glow-2 {
+            width: 90vw; height: 90vw;
+            background: radial-gradient(circle, rgba(200, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 70%);
+            bottom: -20%; right: -20%; animation: moveLight2 13s infinite alternate;
+        }
+        .glow-3 {
+            width: 60vw; height: 60vw;
+            background: radial-gradient(circle, rgba(220, 20, 20, 0.45) 0%, rgba(0, 0, 0, 0) 70%);
+            bottom: -10%; left: 20%; animation: moveLight3 15s infinite alternate;
+        }
+        @keyframes moveLight1 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30vw, 20vh) scale(1.1); }
+            100% { transform: translate(10vw, 40vh) scale(0.9); }
+        }
+        @keyframes moveLight2 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-35vw, -15vh) scale(1.1); }
+            100% { transform: translate(-15vw, -35vh) scale(0.95); }
+        }
+        @keyframes moveLight3 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(15vw, -20vh) scale(1.3); } 
+            100% { transform: translate(-10vw, -10vh) scale(1); }
+        }
+        .content {
+            position: relative; z-index: 10; width: 100%; 
+            height: 100vh;
+            height: -webkit-fill-available;
+            height: 100dvh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            /* iOS safe area */
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        #dizzy-3d-container {
+            width: 80vw; max-width: 600px; height: 50vh; min-height: 300px;
+            margin-bottom: 2rem; position: relative;
+        }
+        /* Mobile optimization: prevents browser gestures on canvas */
+        #dizzy-3d-container canvas {
+            touch-action: none; 
+            outline: none;
+        }
+        .enter-btn {
+            font-family: 'Monument Extended', sans-serif; 
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: #fff; 
+            text-decoration: none;
+            border: 2px solid rgba(255, 0, 0, 0.4); 
+            padding: 1.5rem 4rem;
+            text-transform: uppercase; 
+            letter-spacing: 6px;
+            -webkit-transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+            border-radius: 4px;
+            /* iOS: Força GPU layer para backdrop-filter */
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            /* iOS: Previne seleção acidental */
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .enter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .enter-btn:hover {
+            background: rgba(200, 0, 0, 0.1);
+            color: #fff;
+            border-color: rgba(255, 0, 0, 0.9);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.5), inset 0 0 10px rgba(255, 0, 0, 0.3);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+            letter-spacing: 12px;
+        }
+
+        .enter-btn:hover::before {
+            left: 100%;
+        }
+        #debug-log {
+            position: fixed; top: 10px; left: 10px; z-index: 9999;
+            color: #0f0; background: rgba(0,0,0,0.8); padding: 5px;
+            font-family: monospace; font-size: 12px; pointer-events: none;
+            display: none;
+        }
+
+        /* === GAME MENU SYSTEM === */
+        .content {
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .content.screen-hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #game-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            height: -webkit-fill-available;
+            height: 100dvh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+        }
+        #game-menu.menu-active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .menu-container {
+            width: 85%;
+            max-width: 550px;
+            background: rgba(8, 8, 8, 0.92);
+            -webkit-backdrop-filter: blur(25px);
+            backdrop-filter: blur(25px);
+            padding: 45px 40px;
+            border-left: 3px solid #ff0000;
+            box-shadow: -10px 0 40px rgba(255, 0, 0, 0.08), 0 0 80px rgba(0,0,0,0.6);
+            border-radius: 0 12px 12px 0;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            animation: menuSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes menuSlideIn {
+            from { transform: translateX(-30px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .menu-header h2 {
+            font-family: 'Monument Extended', sans-serif;
+            font-size: clamp(1.1rem, 3vw, 1.6rem);
+            font-weight: normal;
+            letter-spacing: 5px;
+            color: #fff;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .menu-divider {
+            height: 1px;
+            background: linear-gradient(90deg, #ff0000 0%, rgba(255,0,0,0.3) 50%, transparent 100%);
+            margin-bottom: 35px;
+        }
+
+        .menu-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .menu-list.menu-hidden {
+            display: none;
+        }
+
+        .submenu-title {
+            color: #555;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        .menu-item {
+            background: transparent;
+            border: none;
+            color: #666;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            text-align: left;
+            padding: 14px 18px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            position: relative;
+            border-radius: 6px;
+            -webkit-tap-highlight-color: transparent;
+            letter-spacing: 1px;
+            -webkit-appearance: none;
+            appearance: none;
+            outline: none;
+        }
+
+        .menu-item .mi-icon {
+            opacity: 0;
+            margin-right: 12px;
+            transform: translateX(-10px);
+            transition: all 0.25s ease;
+            color: #ff0000;
+            font-size: 0.85em;
+        }
+
+        .menu-item:hover,
+        .menu-item:active {
+            color: #fff;
+            background: linear-gradient(90deg, rgba(255, 0, 0, 0.12), transparent);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .menu-item:hover .mi-icon,
+        .menu-item:active .mi-icon {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .menu-item.back-item {
+            margin-top: 20px;
+            color: #444;
+            font-size: 0.9rem;
+        }
+        .menu-item.back-item:hover {
+            color: #999;
+        }
+
+        /* Mobile menu adjustments */
+        @media (max-width: 600px) {
+            .menu-container {
+                width: 92%;
+                padding: 30px 25px;
+                border-radius: 0 8px 8px 0;
+            }
+            .menu-item {
+                padding: 16px 14px;
+                font-size: 1.05rem;
+            }
+        }
+
+        /* === EM CONSTRUÇÃO MODAL === */
+        #construction-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            height: -webkit-fill-available;
+            height: 100dvh;
+            background: rgba(5, 5, 5, 0.98);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+        }
+        #construction-modal.modal-active {
+            display: flex;
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .construction-container {
+            width: 85%;
+            max-width: 450px;
+            background: rgba(12, 12, 12, 0.95);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            padding: 50px 35px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            position: relative;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Caution Tape - Fitas Amarelas Transversais (background) */
+        .construction-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 20px,
+                rgba(255, 220, 0, 0.06) 20px,
+                rgba(255, 220, 0, 0.06) 40px
+            );
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* Fita superior - Estilo "Caution Tape" */
+        .construction-tape-top {
+            position: absolute;
+            top: 75px;
+            left: -15%;
+            width: 130%;
+            height: 28px;
+            background: repeating-linear-gradient(
+                45deg,
+                #FFD600,
+                #FFD600 20px,
+                #1a1a1a 20px,
+                #1a1a1a 40px
+            );
+            transform: rotate(-6deg);
+            z-index: 2;
+        }
+
+        /* Fita inferior */
+        .construction-tape-bottom {
+            position: absolute;
+            bottom: 90px;
+            left: -15%;
+            width: 130%;
+            height: 28px;
+            background: repeating-linear-gradient(
+                45deg,
+                #1a1a1a 20px,
+                #1a1a1a 40px,
+                #FFD600 40px,
+                #FFD600 60px
+            );
+            transform: rotate(-6deg);
+            z-index: 2;
+        }
+
+        .construction-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .construction-icon svg {
+            width: 100%;
+            height: 100%;
+            color: #FFD600;
+            filter: drop-shadow(0 0 15px rgba(255, 214, 0, 0.4));
+        }
+
+        .construction-title {
+            font-family: 'Monument Extended', sans-serif;
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
+            color: #fff;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .construction-subtitle {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .construction-password-form {
+            position: relative;
+            z-index: 3;
+        }
+
+        .construction-input {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid #333;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 1rem;
+            text-align: center;
+            letter-spacing: 6px;
+            outline: none;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+        .construction-input:focus {
+            border-color: #FFD600;
+            box-shadow: 0 0 15px rgba(255, 214, 0, 0.2);
+        }
+
+        .construction-input::placeholder {
+            color: #444;
+            letter-spacing: 2px;
+        }
+
+        .construction-submit {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(90deg, rgba(255, 214, 0, 0.15), rgba(255, 214, 0, 0.05));
+            border: 1px solid #FFD600;
+            border-radius: 6px;
+            color: #FFD600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .construction-submit:hover {
+            background: rgba(255, 214, 0, 0.25);
+            box-shadow: 0 0 20px rgba(255, 214, 0, 0.3);
+        }
+
+        .construction-error {
+            color: #ff4444;
+            font-size: 0.8rem;
+            margin-top: 12px;
+            display: none;
+        }
+
+        .construction-error.error-visible {
+            display: block;
+        }
+
+        .construction-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #444;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: color 0.3s ease;
+            padding: 5px;
+        }
+
+        .construction-close:hover {
+            color: #fff;
+        }
+
+        .construction-success {
+            color: #4CAF50;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            display: none;
+            position: relative;
+            z-index: 3;
+        }
+
+        .construction-success.success-visible {
+            display: block;
+        }
+
+        .back-to-main-btn {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #555;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            position: relative;
+            z-index: 3;
+        }
+
+        .back-to-main-btn:hover {
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class='background-wrapper'>
+        <div class='glow glow-1'></div>
+        <div class='glow glow-2'></div>
+        <div class='glow glow-3'></div>
+    </div>
+    <div id='debug-log'></div>
+
+    <!-- Splash Screen (Logo 3D + ENTER) -->
+    <div class='content' id='splash-screen'>
+        <div id='dizzy-3d-container'></div>
+        <button id='btn-enter' class='enter-btn'>ENTER</button>
+    </div>
+
+    <!-- Game Menu -->
+    <div id='game-menu'>
+        <div class='menu-container'>
+            
+            <!-- Cabeçalho -->
+            <div class='menu-header'>
+                <h2>Menu Principal</h2>
+                <div class='menu-divider'></div>
+            </div>
+
+            <!-- Opções Principais -->
+            <div id='main-options' class='menu-list'>
+                <!-- Tattoo com submenu -->
+                <button class='menu-item' onclick="openSubMenu('tattoo-options')">
+                    <span class='mi-icon'>➔</span> Tattoo
+                </button>
+                <!-- Roupa/Outlet com modal de "Em Construção" -->
+                <button class='menu-item' onclick="openConstructionModal('catalogo.html')">
+                    <span class='mi-icon'>➔</span> Roupa/ Outlet
+                </button>
+                <!-- Potencialize seu Negócio com modal de "Em Construção" -->
+                <button class='menu-item' onclick="openConstructionModal('potencialize.html')">
+                    <span class='mi-icon'>➔</span> Potencialize seu Negócio
+                </button>
+                <button class='menu-item back-item' onclick='closeGameMenu()'>
+                    <span class='mi-icon'>⮌</span> Voltar
+                </button>
+            </div>
+
+            <!-- Submenu de Tattoo -->
+            <div id='tattoo-options' class='menu-list menu-hidden'>
+                <div class='submenu-title'>Selecione a Opção</div>
+                <button class='menu-item' onclick="goToPage('home.html')">
+                    <span class='mi-icon'>➔</span> Agendar
+                </button>
+                <button class='menu-item' onclick="goToPage('portfolio.html')">
+                    <span class='mi-icon'>➔</span> Portfólio
+                </button>
+                <button class='menu-item back-item' onclick='backToMainMenu()'>
+                    <span class='mi-icon'>⮌</span> Voltar ao Menu
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal de Página em Construção -->
+    <div id='construction-modal'>
+        <div class='construction-container'>
+            <button class='construction-close' onclick='closeConstructionModal()'>×</button>
+            
+            <!-- Fitas amarelas de interdição -->
+            <div class='construction-tape-top'></div>
+            <div class='construction-tape-bottom'></div>
+            
+            <!-- Ícone de triângulo de atenção -->
+            <div class='construction-icon'>
+                <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+                    <path d='M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z'></path>
+                    <line x1='12' y1='9' x2='12' y2='13'></line>
+                    <line x1='12' y1='17' x2='12.01' y2='17'></line>
+                </svg>
+            </div>
+            
+            <h3 class='construction-title'>Em Construção</h3>
+            <p class='construction-subtitle'>Esta página ainda não está disponível</p>
+            
+            <!-- Formulário de senha -->
+            <div class='construction-password-form' id='password-form'>
+                <input type='password' class='construction-input' id='construction-password' placeholder='SENHA DE ACESSO' maxlength='20'>
+                <button class='construction-submit' onclick='checkPassword()'>Entrar</button>
+                <p class='construction-error' id='password-error'>Senha incorreta. Tente novamente.</p>
+            </div>
+            
+            <!-- Mensagem de sucesso -->
+            <p class='construction-success' id='password-success'>✓ Acesso liberado! Redirecionando...</p>
+            
+            <p class='back-to-main-btn' onclick='closeConstructionModal()'>Voltar ao Menu</p>
+        </div>
+    </div>
+
+    <script src='https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js'></script>
+    <script>
+        // Production Mode: Logs disabled on UI
+        const debugEl = document.getElementById('debug-log');
+        if(debugEl) debugEl.style.display = 'none';
+
+        function log(msg) {
+            console.log(msg); // Only console
+        }
+        window.onerror = (e) => console.error(e);
+
+        // log('Init...');
+        const container = document.getElementById('dizzy-3d-container');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(45, container.offsetWidth / container.offsetHeight, 0.1, 1000);
+        camera.position.z = 10;
+        
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(container.offsetWidth, container.offsetHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
+
+        // --- ORBIT CONTROLS ---
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.enableZoom = false; 
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 2.0;
+        // ----------------------
+        
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
+        scene.add(ambientLight);
+        const dl = new THREE.DirectionalLight(0xffffff, 2);
+        dl.position.set(2, 2, 5);
+        scene.add(dl);
+
+        let model = null;
+        function forceFallback() {
+            if(model && model.isModel) return;
+            log('Fallback: Cube');
+            if(model) scene.remove(model);
+            const geo = new THREE.BoxGeometry(3, 3, 3);
+            const mat = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
+            model = new THREE.Mesh(geo, mat);
+            scene.add(model);
+        }
+
+        const loader = new THREE.GLTFLoader();
+        loader.load('/icon/Model_Compressed.glb', (gltf) => {
+            // log('GLB Loaded'); // Clean log
+            if(model) scene.remove(model);
+            model = gltf.scene;
+            model.isModel = true;
+            
+            // --- MATERIAL & DESIGN ADJUSTMENTS ---
+            // Percorre todas as partes do modelo para ajustar o material
+            model.traverse((o) => { 
+                if(o.isMesh) {
+                    // Opção A: Manter as cores originais, mas adicionar brilho ("Graffiti Glossy")
+                    // Se o material original não for muito reativo à luz, convertemos para Standard
+                    if(o.material) {
+                         const oldMat = o.material;
+                         o.material = new THREE.MeshStandardMaterial({
+                             map: oldMat.map,        // Mantém textura
+                             color: oldMat.color,    // Mantém cor base
+                             roughness: 0.2,         // Mais liso (brilho de verniz de spray)
+                             metalness: 0.6,         // Meio metálico
+                             normalMap: oldMat.normalMap,
+                             transparent: true,
+                             opacity: 1
+                         });
+                    }
+                    // Debug antigo removido: o.material = new THREE.MeshNormalMaterial(); 
+                } 
+            });
+
+            // Adiciona uma luz pontual vermelha para dar o clima "Dizzy"
+            const redLight = new THREE.PointLight(0xff0000, 2, 10);
+            redLight.position.set(-2, 1, 2);
+            scene.add(redLight);
+
+            // Luz de preenchimento azulada suave no lado oposto para contraste
+            const blueFill = new THREE.PointLight(0x0000ff, 0.5, 10);
+            blueFill.position.set(3, -2, 2);
+            scene.add(blueFill);
+            // -------------------------------------
+
+            const box = new THREE.Box3().setFromObject(model);
+            const size = box.getSize(new THREE.Vector3());
+            const center = box.getCenter(new THREE.Vector3());
+            
+            model.position.x -= center.x;
+            model.position.y -= center.y;
+            model.position.z -= center.z;
+            
+            const maxDim = Math.max(size.x, size.y, size.z);
+            if(maxDim > 0) {
+                const s = 6 / maxDim;
+                model.scale.set(s, s, s);
+            }
+            scene.add(model);
+        }, undefined, (e) => { 
+            console.error('Model Load Error:', e);
+            // Only show fallback on actual error, not timeout
+            forceFallback(); 
+        });
+
+        // setTimeout(() => { if(!model) forceFallback(); }, 3000); // Removed time-based fallback to avoid green cube flashing
+
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update(); // Update controls (Damping / AutoRotate)
+
+            if(model) {
+                // model.rotation.y += 0.005; // Rotacao agora controlada pelo OrbitControls
+                model.position.y += Math.sin(Date.now() * 0.002) * 0.005;
+            }
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+             const w = container.offsetWidth; const h = container.offsetHeight;
+             renderer.setSize(w, h); camera.aspect = w/h; camera.updateProjectionMatrix();
+        });
+    </script>
+
+    <!-- Game Menu Logic -->
+    <script>
+        // ============================================================
+        // CONSTANTES DE CONFIGURAÇÃO
+        // ============================================================
+        
+        // Senha para acesso à página "Em Construção"
+        // Altere aqui para a senha desejada
+        const CONSTRUCTION_PASSWORD = "troque-esta-senha";
+        
+        // URL de destino quando a senha estiver correta
+        // (Configure a URL real do catálogo de roupas aqui)
+        const CLOTHING_CATALOG_URL = "catalogo.html";
+
+        // ============================================================
+        // VARIÁVEIS DE ESTADO
+        // ============================================================
+        
+        const splashScreen = document.getElementById('splash-screen');
+        const gameMenu = document.getElementById('game-menu');
+        const mainOptions = document.getElementById('main-options');
+        const tattooOptions = document.getElementById('tattoo-options');
+        const clothingOptions = document.getElementById('clothing-options');
+        const btnEnter = document.getElementById('btn-enter');
+
+        // Elementos do modal de construção
+        const constructionModal = document.getElementById('construction-modal');
+        const passwordForm = document.getElementById('password-form');
+        const passwordInput = document.getElementById('construction-password');
+        const passwordError = document.getElementById('password-error');
+        const passwordSuccess = document.getElementById('password-success');
+
+        // ============================================================
+        // FUNÇÕES DO MENU PRINCIPAL
+        // ============================================================
+
+        // ENTER → Abre o menu
+        btnEnter.addEventListener('click', () => {
+            splashScreen.classList.add('screen-hidden');
+            gameMenu.classList.add('menu-active');
+        });
+
+        // Volta para a tela do logo
+        function closeGameMenu() {
+            gameMenu.classList.remove('menu-active');
+            splashScreen.classList.remove('screen-hidden');
+            // Reset submenu ao voltar
+            backToMainMenu();
+        }
+
+        // ============================================================
+        // FUNÇÕES DE SUBMENU
+        // ============================================================
+
+        // Navega para submenu ( Tattoo )
+        function openSubMenu(menuId) {
+            mainOptions.classList.add('menu-hidden');
+            document.getElementById(menuId).classList.remove('menu-hidden');
+        }
+
+        // Volta do submenu para opções principais
+        function backToMainMenu() {
+            tattooOptions.classList.add('menu-hidden');
+            mainOptions.classList.remove('menu-hidden');
+        }
+
+        // ============================================================
+        // MODAL DE "EM CONSTRUÇÃO"
+        // ============================================================
+
+        let currentTargetUrl = "catalogo.html";
+
+        // Abre o modal de construção
+        function openConstructionModal(targetUrl = "catalogo.html") {
+            currentTargetUrl = targetUrl;
+            constructionModal.classList.add('modal-active');
+            // Limpa campos
+            if (passwordInput) passwordInput.value = '';
+            if (passwordError) passwordError.classList.remove('error-visible');
+            if (passwordForm) passwordForm.style.display = 'block';
+            if (passwordSuccess) passwordSuccess.classList.remove('success-visible');
+        }
+
+        // Fecha o modal de construção
+        function closeConstructionModal() {
+            constructionModal.classList.remove('modal-active');
+        }
+
+        // Valida a senha e redireciona
+        function checkPassword() {
+            const inputPassword = passwordInput.value.trim();
+            
+            if (inputPassword === CONSTRUCTION_PASSWORD) {
+                // Senha correta - mostra sucesso e redireciona
+                passwordForm.style.display = 'none';
+                passwordSuccess.classList.add('success-visible');
+                
+                // Redireciona após breve delay
+                setTimeout(() => {
+                    window.location.href = currentTargetUrl;
+                }, 1000);
+            } else {
+                // Senha incorreta - mostra erro
+                passwordError.classList.add('error-visible');
+                
+                // Limpa o campo de senha
+                passwordInput.value = '';
+                passwordInput.focus();
+            }
+        }
+
+        // PermiteSubmit Enter no campo de senha
+        passwordInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        // ============================================================
+        // NAVEGAÇÃO
+        // ============================================================
+
+        // Ir para uma página do site (com transição)
+        function goToPage(url) {
+            document.body.style.transition = 'opacity 0.5s ease';
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                window.location.href = url;
+            }, 500);
+        }
+
+        // ============================================================
+        // CONTROLES DE TECLADO
+        // ============================================================
+
+        // Tecla ESC fecha o menu
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (constructionModal.classList.contains('modal-active')) {
+                    closeConstructionModal();
+                } else if (gameMenu.classList.contains('menu-active')) {
+                    closeGameMenu();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+name = "e3chat-audio-transcriber"
+main = "audio.js"
+compatibility_date = "2024-09-23"
+
+# Binding para Workers AI (Whisper)
+# Ref: https://developers.cloudflare.com/workers-ai/configuration/bindings/
+[ai]
+binding = "AI"
+
+# Variável de ambiente para autenticação (opcional)
+# Defina via: npx wrangler secret put AUTH_TOKEN
+# [vars]
+# AUTH_TOKEN = ""

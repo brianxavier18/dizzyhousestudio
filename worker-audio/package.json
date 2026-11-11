@@ -1,0 +1,13 @@
+{
+  "name": "e3chat-audio-transcriber",
+  "version": "1.0.0",
+  "description": "Cloudflare Worker para transcrição de áudio via Workers AI (Whisper @cf/openai/whisper)",
+  "main": "audio.js",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev"
+  },
+  "devDependencies": {
+    "wrangler": "^4.67.0"
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "boas_vindas": "E aí {nome}, tudo bem? Drezin aqui! Agora estou na correria dando andamento em um projeto, mas já já dou uma atenção especial no seu.\n\nEnquanto isso, me manda sua arte com detalhes e referências, por gentileza.\n\nMeu assistente vai te fazer algumas perguntas para adiantar o processo.\n\nAssim, quando eu terminar o projeto, já entro com aquele atendimento completo com áudios e tudo mais!\n\nCaso você já tenha me enviado a sua ideia, não se preocupa, eu já vou te dar um retorno!\n\nE se por acaso você quiser tratar de outro assunto que não seja tatuagem, me chama no Instagram @drezintattoo",
+
+  "transicao_atendente": "Show, então bora lá! Vou te fazer algumas perguntinhas pra gente deixar tudo redondinho.\n\nPrimeiro: você já é cliente da casa ou tá chegando agora como novo cliente?",
+
+  "cliente_novo_origem": "Ah, legal! Como novo cliente, só pra eu entender melhor, você conheceu meu trabalho pelo Instagram ou foi indicação de alguém? Se foi indicação, me diz quem te indicou!",
+
+  "cliente_da_casa": "Que bom te ver de volta! Sempre bom atender quem já é da casa 👊\n\nComo você já conhece o trabalho do Dré, a ideia aqui é manter o padrão ou até evoluir ainda mais o projeto em relação às suas outras tattoos.\n\nMe conta, o que você tem em mente pra essa nova tattoo? Se já tiver referência, manda aqui que facilita!",
+
+  "briefing": "E sobre a sua tatuagem, o que você imagina?\n\nPrefere algo mais minimalista ou cartunizado, com execução mais rápida, ou algo bem detalhado, com mais riqueza de detalhes e mais horas de trabalho?\n\nOu quer seguir fielmente a referência, sem grandes mudanças?\n\nE claro, se a referência é só pra tema e elemento, me fala, que a gente cria algo autoral juntos!\n\nSe possível, manda um áudio explicando o que você tá imaginando. Ouvir de você, nas suas palavras, ajuda demais a criar o projeto ideal!",
+
+  "foto_pedido": "Se tiver alguma foto de referência ou inspiração, manda aqui! Pode ser de internet, Pinterest, Instagram... qualquer coisa que ajude a entender a vibe do que você quer 📸\n\nSe tiver uma foto do local no corpo onde quer tatuar, manda também que ajuda demais na hora de pensar o encaixe!",
+
+  "foto_recebida": "Massa! Foto recebida ✅ Vou deixar tudo organizado pro Dré!",
+
+  "investimento": "E sobre o investimento, com base no que você imagina ou pesquisou, quanto pretende investir no projeto?\n\nFica tranquilo: se o projeto for maior e você busca um preço mais em conta, ajustamos a arte para ser realizada em apenas uma sessão. Se você quer algo rico em detalhes, o valor reflete essa complexidade, e muitas vezes pode levar duas ou mais sessões, o que aumenta o investimento.\n\nAgora, se for menor e minimalista, temos flexibilidade de preço porque são sessões de no máximo 1h e desenhos simples, de traços da mesma espessura, sem chapados de preto e sem sombra. Se for pequeno mas detalhado, podemos fazer também, porém entenda: o tamanho pequeno não torna barato nem necessariamente rápido, mas dificilmente passa de uma sessão de 3 horas e 30 minutos.",
+
+  "pagamento_info_novo": "As formas de pagamento no estúdio são extremamente facilitadas: Pix, dinheiro, cartão parcelado em 6x sem juros, ou em até 10x sem juros para tatuagens acima de R$1000. Também temos a opção de entrada no pix ou dinheiro + restante no cartão parcelado sem juros.\n\nO valor final que é passado pelo Drezin já inclui creme anestésico e cicatrizante.\n\nCom Drezin, o processo é tranquilo. Contando com anos de experiência, estúdio de alto nível e os melhores materiais, você terá uma experiência extremamente agradável.\n\nAgora, tira um tempinho e responde com calma. De preferência, mande um áudio, por gentileza. A sua resposta em termos de orçamento, com o seu ponto de vista e o que você tem idealizado, é o que vai ajudar a entender melhor e ajustar a proposta pra que faça sentido pra você.",
+
+  "pagamento_info_casa": "As formas de pagamento no estúdio são extremamente facilitadas: Pix, dinheiro, e cartão parcelado em até 10x sem juros em qualquer valor — benefício exclusivo pra quem é da casa 🏠\nTambém temos a opção de entrada no pix ou dinheiro + restante no cartão parcelado sem juros.\n\nO valor final que é passado pelo Drezin já inclui creme anestésico e cicatrizante.\n\nCom Drezin, o processo é tranquilo. Contando com anos de experiência, estúdio de alto nível e os melhores materiais, você terá uma experiência extremamente agradável.\n\nAgora, tira um tempinho e responde com calma. De preferência, mande um áudio, por gentileza. A sua resposta em termos de orçamento, com o seu ponto de vista e o que você tem idealizado, é o que vai ajudar a entender melhor e ajustar a proposta pra que faça sentido pra você.",
+
+  "organizacao": "Muito obrigado por ter respondido tudo com tanta atenção! Suas respostas já estão organizadas e, quando o Drezin for te responder, tudo estará encaminhado para facilitar o atendimento. Pode aguardar que ele já já retorna com toda a atenção!",
+
+  "engajamento": "Enquanto o Drezin não te responde, te convido a dar uma olhada no nosso Instagram @drezintattoo e conhecer as \"Artes de Portfólio Disponíveis\" que ele desenvolveu. São criações do gosto pessoal do Drezin e do que ele quer trazer para seu portfólio. Essas peças têm valores exclusivos por serem parte de uma proposta artística. Dá uma olhada nas postagens, destaques e stories, pois sempre tem oportunidades por lá!",
+
+  "resposta_aguardo": [
+    "Showww fico no aguardo 🤙",
+    "Tranquilo! Quando puder, me responde 🤙",
+    "De boa! Tô por aqui 👊",
+    "Suave! Fico no aguardo então 😎",
+    "Sem pressa! Tô aqui quando precisar 🤙"
+  ],
+
+  "resposta_casual": [
+    "Showww 🤙",
+    "Tmj! 👊",
+    "Isso aí! 🔥",
+    "Massa! 💪",
+    "Show de bola! 🤙"
+  ],
+
+  "erro_generico": "Hmm, não entendi muito bem 😅 Pode me explicar melhor?\nSe quiser falar com o Dré direto, é só me dizer!",
+
+  "transbordo": "Vou te passar pro Dré que ele já te dá toda a atenção! Aguarda só um instante 🤙",
+
+  "urgencia": "Entendi que você precisa de algo urgente! Vou te passar direto pro Dré pra ele verificar disponibilidade. Aguarda só um instante! 🤙",
+
+  "outro_assunto": "Sem problemas! Pra assuntos que não sejam tatuagem, o melhor canal é o Instagram @drezintattoo. Lá o Dré responde direto! 📸",
+
+  "ja_orcamento": "Show! Você já teve um orçamento antes com o Dré, então ele já sabe do seu projeto. Vou te passar pra ele pra vocês acertarem os detalhes do agendamento! Aguarda só um instante 🤙",
+
+  "ja_agendado": "Que bom que você já tem um agendamento com a gente! Vou te passar pro Dré que ele resolve o que você precisar 🤙",
+
+  "cobertura_intro": "Pra coberturas e reformas, o processo é um pouco diferente. O Dré precisa analisar a tattoo atual pra criar a melhor solução.\n\nManda uma foto da tattoo que quer cobrir ou reformar e me conta onde ela é no corpo. Se puder mandar um áudio explicando o que tem em mente, melhor ainda! 🤙",
+
+  "cobertura_recebido": "Recebi as informações ✅ Vou organizar tudo e o Dré vai te responder com a análise e proposta. Pode aguardar!",
+
+  "site_confirmacao": "Recebi sua reserva do site! 🌐\n\nVi aqui:\n📅 Data: {data}\n🕐 Período: {periodo}\n📝 Projeto: {projeto}\n\nEstá tudo certo? Se precisar ajustar alguma coisa, me fala!",
+
+  "site_confirmado": "Show! Dados confirmados ✅ O Dré vai te responder em breve com todos os detalhes do projeto e valor!",
+
+  "agenda_futura": "Quer agendar pra uma data mais pra frente? Sem problemas! Dá uma olhada na disponibilidade em tempo real lá no site: www.dizzyhousestudio.com 🗓️\nAssim que escolher a data, me avisa que a gente segue daqui!",
+
+  "duvidas": {
+    "inicio": "Pode mandar sua dúvida que eu te ajudo! Se for sobre preços, horários, localização, cuidados com a tattoo ou seu agendamento, já tenho tudo na ponta da língua 😄",
+
+    "precos": "💰 *Tabela de Preços — Dizzy House Studio*\n━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🔥 *OLD SCHOOL*\n📏 Até 8cm: R$300 (2 por R$550)\n📏 8-15cm: R$700 (2 por R$1300)\n📏 15-22cm: R$1000 (2 por R$1800)\n📏 22cm+: R$1500 a R$2500+\n\n✒️ *FINE LINE E FLORAL*\n📏 Até 8cm: R$250 (2 por R$450)\n📏 8-15cm: R$450 (2 por R$800)\n📏 15-22cm: R$700 (2 por R$1200)\n📏 22cm+: R$900 a R$1500+\n\n⚫ *PRETO & CINZA*\n📏 Até 8cm: R$500\n📏 8-15cm: R$900\n📏 15-22cm: R$1400\n📏 22cm+: R$1800 a R$3500+\n⚠️ Geralmente exige sessões maiores\n\n🖋 *LETTERING*\n📏 Até 8cm: R$300 (2 por R$550)\n📏 8-15cm: R$600 (2 por R$1100)\n📏 15-22cm: R$1000 (2 por R$1800)\n📏 22cm+: R$1500 a R$3000+\n\n🎨 *OUTROS ESTILOS*\n_(Blackwork, pontilhismo, tribal, ornamental, etc.)_\n📏 Até 8cm: R$350 (2 por R$650)\n📏 8-15cm: R$650 (2 por R$1200)\n📏 15-22cm: R$1000 (2 por R$1800)\n📏 22cm+: R$1500 a R$3000+\n\n✅ *Incluído:* creme anestésico + kit cicatrizante\n\n💳 *Pagamento:*\n• Pix ou dinheiro\n• Até 6x sem juros\n• Até 10x sem juros acima de R$1000\n• Entrada no Pix/din + restante no cartão s/juros\n• 🏠 *Clientes da casa:* até 10x sem juros em qualquer valor!\n\n_Clientes da casa possuem condições especiais, prioridade de agenda e acesso antecipado a projetos!_\n\nTem mais alguma dúvida? Pode perguntar!",
+
+    "horarios": "🕐 *Horários de Atendimento — Drezin Tattoo*\n━━━━━━━━━━━━━━━━━━━━━━━━━\n\n*Segunda a Sábado:*\n🌅 Manhã: 8h, 9h, 10h, 11h\n☀️ Tarde: 14h, 15h, 16h\n🌙 Noite: 17h, 18h, 19h, 20h\n\n*Domingo (em raridade):*\n⭐ Horários especiais: 11h, 14h, 15h\n\n📌 *Informações importantes:*\n• Máximo de 3 clientes por dia\n• Agendamentos com *mínimo 3 dias de antecedência*\n• Confira a disponibilidade em tempo real no site: www.dizzyhousestudio.com\n\nTem mais alguma dúvida? Pode perguntar!",
+
+    "localizacao": "📍 *Localização — Dizzy House Studio*\n━━━━━━━━━━━━━━━━━━━━━━━━━\n\n🧭 *Endereço:* Rua Teresa 190 — Loja Dizzy\nLocalizado na Galeria Petrópolis\n\n🔎 *Ponto de referência:* A Galeria Petrópolis fica do outro lado da rua da loja Casa Verde, próxima à Empório. É a mesma galeria do restaurante Boca Nervosa.\n\n*Facilidades:*\n🅿️ Estacionamentos próximos e rotativo em rua pública\n🍔 Lanchonetes e restaurantes próximos\n🛍️ Shopping Pátio Petrópolis a 500m do estúdio\n\n🗺️ *Google Maps:* https://maps.google.com/?q=ENDERECO+DO+ESTUDIO",
+
+    "cuidados": "🩺 *Cuidados — Antes e Depois da Tatuagem*\n━━━━━━━━━━━━━━━━━━━━━━━━━\n\n*ANTES da sessão:*\n✅ Durma bem na noite anterior\n✅ Alimente-se bem (não venha em jejum)\n✅ Hidrate-se bastante\n✅ Não tome bebida alcoólica 24h antes\n✅ Não tome remédios que afinem o sangue (aspirina, etc)\n✅ Vista roupas confortáveis e que facilitem acesso ao local\n✅ Traga referências visuais da tatuagem desejada\n❌ Não faça depilação no local (o tatuador raspa na hora)\n\n*DEPOIS da sessão:*\n✅ Mantenha o filme por 3-4 horas\n✅ Lave com água morna e sabão neutro\n✅ Aplique pomada cicatrizante (Bepantol, Nebacetin)\n✅ Hidrate a área 3x ao dia por 15 dias\n✅ Use protetor solar após cicatrizar\n❌ Não coce, não arranque casquinhas\n❌ Evite piscina, mar e banho de banheira por 15 dias\n❌ Evite sol direto nos primeiros 30 dias\n❌ Não use roupas apertadas sobre a tattoo\n\nTem mais alguma dúvida? Pode perguntar!",
+
+    "agendamento": "📅 *Sobre agendamento, cancelamento e remarcação*\n━━━━━━━━━━━━━━━━━━━━━━━━━\n\n*Cancelamento/Remarcação:*\nAvise com no mínimo 24h de antecedência. Sem aviso ou aviso com menos de 24h, o sinal não é reembolsável — mas pode ser convertido em voucher na @dizzycorporation 🤝\n\n*Atraso:*\nChegue no horário! Atrasos acima de 15 minutos podem resultar em perda da vaga.\n\n*Marcar sessão:*\nConfira a disponibilidade em tempo real no site: www.dizzyhousestudio.com\n\nSe precisar de algo mais, pode mandar que a gente resolve! 🤙",
+
+    "outra": "Manda a dúvida aí que eu tento te ajudar! Se eu não souber, passo pro Dré 🤙",
+
+    "resposta_livre": "Vou passar essa pergunta pro Dré que ele vai saber te responder melhor! Aguarda só um instante 🤙"
+  },
+
+  "dre_templates": {
+    "apresentacao": "Faaaaaala meu mano! Beleza? Drezin aquiiiii, cheguei pra dar aquela atenção máxima no seu projeto",
+    "feedback_site": "Agora me passa o seu feedback, me diz se fez sentido e se podemos seguir dessa forma. Se precisar ajustar, me avisa. E, se você já estiver pronto pra marcar, dá uma olhada na minha disponibilidade em tempo real lá no meu site: www.dizzyhousestudio.com\nAssim, a gente já consegue alinhar a sessão de maneira bem prática!",
+    "sinal_pix": "Para confirmar a sua sessão, é necessário um sinal de R$100.\n\nEsse pagamento é feito exclusivamente via Pix, na chave: SUA_CHAVE_PIX\nBanco: SEU_BANCO\nPara: NOME DO TITULAR.\n\nLembrando que esse sinal é descontado do valor total da tatuagem, então no dia você acerta apenas o saldo restante.\n\nAssim que o sinal for feito, sua sessão estará garantida!\n(Enviar o comprovante ao realizar o pagamento)",
+    "resumo_novo": "🎨 RESUMO DO SEU ATENDIMENTO:\n━━━━━━━━━━━━━━━━━━━━━━\n📍 Local: {local}\n📐 Tamanho: {tamanho}\n👨🏻‍🎨 Nível de detalhamento: {nivel_detalhe}\n⏳ Tempo de tattoo: {sessoes}\n💰 Valor Total: R$ {valor_total}\n🔄 Saldo restante a acertar no dia da tatuagem: R$ {valor_saldo}\n💵 Sinal: R$ 100 pago\n━━━━━━━━━━━━━━━━━━━━━━\n✅ Incluído: creme anestésico + kit cicatrizante\n\n💳 Formas de pagamento:\n* Pix ou dinheiro\n* Entrada no Pix ou dinheiro + restante parcelado no cartão sem juros\n* Até 6x sem juros\n* Até 10x sem juros (acima de R$1000)",
+    "resumo_casa": "🎨 RESUMO DO SEU ATENDIMENTO:\n━━━━━━━━━━━━━━━━━━━━━━\n📍 Local: {local}\n📐 Tamanho: {tamanho}\n👨🏻‍🎨 Nível de detalhamento: {nivel_detalhe}\n⏳ Tempo de tattoo: {sessoes}\n💰 Valor Total: R$ {valor_total}\n🔄 Saldo restante a acertar no dia da tatuagem: R$ {valor_saldo}\n💵 Sinal: R$ 100 pago\n━━━━━━━━━━━━━━━━━━━━━━\n✅ Incluído: creme anestésico + kit cicatrizante\n\n💳 Formas de pagamento:\n* Pix ou dinheiro\n* Entrada no Pix ou dinheiro + restante parcelado no cartão sem juros\n* Até 10x sem juros em qualquer valor (exclusivo cliente da casa)",
+    "endereco": "🧭 Endereço: Rua Teresa 190 Loja Dizzy.\n\nLocalizado na Galeria Petrópolis.\n\n🔎 Ponto de referência: A Galeria Petrópolis fica do outro lado da rua da loja Casa Verde, próxima a loja Empório. A Galeria Petrópolis é a mesma galeria do restaurante Boca Nervosa.\n\nFacilidades da localidade:\n- Estacionamentos próximo ou rotativo em rua pública;\n- Lanchonetes e restaurantes próximo;\n- Shopping Pátio Petrópolis a 500m do estúdio.\n\nFotos e vídeos da fachada da rua 👇🏻",
+    "google_maps": "https://maps.google.com/?q=ENDERECO+DO+ESTUDIO",
+    "confirmacao": "Seu agendamento já está confirmado! ✅\nTe espero no estúdio na data combinada.\n\nCaso aconteça algum imprevisto e você precise remarcar, peço que avise com no mínimo 24h de antecedência, para que possamos reorganizar a agenda.\n\nEm casos de aviso com menos de 24h ou não comparecimento, a sessão é considerada perdida e o sinal não é reembolsável em dinheiro. Para um novo agendamento, será necessário realizar um novo sinal.\n\nMas aqui no estúdio a gente é parceiro 🤝\nEntão, nesses casos, você pode optar por resgatar o valor do sinal em forma de voucher para usar na nossa loja @dizzycorporation.\n\nVamos mantendo contato até o dia da sua tatuagem! Qualquer dúvida ou se precisar de outro orçamento seja pra você, amigo ou familiar pode me chamar por aqui."
+  },
+
+  "timeout": "Opa! Faz um tempinho que a gente não se fala 😅 Se quiser retomar, é só mandar uma mensagem!",
+  "menu_ajuda": "Precisa de ajuda? Me conta o que tá rolando que a gente resolve! Se quiser falar direto com o Dré, é só me dizer 🤙"
+}

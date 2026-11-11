@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.92, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <title>Dizzy House Studio | Agendamento</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=20260313a">
+    <!-- Google Fonts: Permanent Marker, Monoton, Rock Salt -->
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Monoton&family=Rock+Salt&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-wrapper">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        <div class="glow glow-3"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <img src="icon/logodizzy.PNG" alt="Dizzy House Studio" class="site-logo">
+        </header>
+
+        <!-- Seção de Agendamento -->
+        <div style="position: relative;">
+            <div class="neon-frame">
+                <div class="section-info">
+                    <h3 class="agenda-disponivel">AGENDA DISPONÍVEL (PRÓXIMOS 14 DIAS)</h3>
+                    <p id="selected-info">Selecione um dia e período abaixo:</p>
+                </div>
+
+                <div class="carousel-wrapper" style="position: relative;">
+                    <button class="nav-btn prev" id="carousel-prev" aria-label="Anterior">&#10094;</button>
+                    <button class="nav-btn next" id="carousel-next" aria-label="Próximo">&#10095;</button>
+                    <div class="carousel-viewport">
+                        <div class="carousel-track" id="carousel-track">
+                            <!-- JS vai renderizar os cards aqui -->
+                        </div>
+                    </div>
+                </div>
+
+            <div class="booking-form" id="booking-form">
+                                <h3 id="form-title">RESERVAR HORÁRIO</h3>
+                                <p id="taxa-text" style="color: var(--silver); margin-bottom: 20px;">Taxa de Reserva: <strong>R$ 100,00</strong></p>
+                                <input type="text" id="client-name" placeholder="Seu Nome Completo">
+                                <select id="job-type">
+                                        <option value="1" id="opt-type-1">Tatuagem Pequena/Média (1 vaga)</option>
+                                        <option value="2" id="opt-type-2">Tatuagem Grande / Fechamento (2 vagas)</option>
+                                </select>
+                                <textarea id="client-health" placeholder="Informe o local do corpo onde deseja tatuar."></textarea>
+                                <textarea id="client-project" placeholder="Descreva se quer algo mais simplificado e barato ou algo mais elaborado em mais sessões. Informe também quanto pretende investir."></textarea>
+                                <div style="font-size:0.9rem;color:#aaa;margin-bottom:10px;">
+                                     <strong>Dicas:</strong> <span id="booking-tips-text">Diga se prefere algo mais simples e econômico ou algo mais detalhado em mais sessões; informe também o valor que gostaria de investir no projeto.</span>
+                                </div>
+                                <button id="btn-confirm-booking" class="btn-confirm" onclick="confirmBooking()">PAGAR R$ 100 E RESERVAR</button>
+            </div>
+        </div>
+
+        <div class="rules">
+            * Agendamentos com no mínimo 3 dias de antecedência.<br>
+            * Máximo de 3 clientes por dia. Domingos: Em raridade.<br>
+            * O valor da reserva é abatido no valor final da tatuagem.
+        </div>
+
+        <h2 class="agenda-disponivel" style="margin-top: 60px; font-size: 1.5rem;">REFERÊNCIAS & PORTFÓLIO</h2>
+        
+        <!-- Portfólio Scroll Horizontal -->
+        <div class="portfolio-wrapper" id="portfolio-container">
+            <div class="portfolio-track">
+                <!-- JS vai carregar itens do backend -->
+                <div style="color: #666; padding: 20px;">Carregando...</div>
+            </div>
+        </div>
+
+        <footer>
+            <div style="display:flex; justify-content:center; gap:30px; margin: 40px 0 20px 0;">
+                <!-- WhatsApp -->
+                <a href="https://wa.me/5521976265417" target="_blank" class="social-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 0 10px rgba(255,255,255,0.8));">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471.148-.67.445-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#ffffff"/>
+                    </svg>
+                </a>
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/tattoodoandre?igsh=a2U3dWg0b2ZodG1v" target="_blank" class="social-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 0 10px rgba(255,255,255,0.8));">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069ZM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0Zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324ZM12 16a4 4 0 110-8 4 4 0 010 8Zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881Z" fill="#ffffff"/>
+                    </svg>
+                </a>
+
+                <!-- Info Button -->
+                <a href="javascript:void(0)" onclick="openMoreInfo()" class="social-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 0 10px rgba(255,255,255,0.8));">
+                         <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10zm1-17h-2v2h2V5zm0 4h-2v10h2V9z" fill="#ffffff"/>
+                    </svg>
+                </a>
+                <!-- Portfólio -->
+                <a href="portfolio.html" class="social-icon" title="Portfólio">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 0 10px rgba(255,255,255,0.8));">
+                        <path d="M22 16V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zM11 12l2.03 2.71L16 11l4 5H8l3-4zM2 6v14a2 2 0 0 0 2 2h14v-2H4V6H2z" fill="#ffffff"/>
+                    </svg>
+                </a>
+            </div>
+        </footer>
+        
+        <div style="width: 100%; max-width: 800px; margin: 0 auto 40px auto; padding: 0 20px;">
+            <div class="neon-frame" style="padding: 5px; overflow: hidden; height: 350px; border-radius: 15px; border: 1px solid #333;">
+                <iframe 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0; display:block; filter: invert(90%) hue-rotate(180deg) grayscale(20%); -webkit-filter: invert(90%) hue-rotate(180deg) grayscale(20%);" 
+                    loading="lazy" 
+                    allowfullscreen 
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://maps.google.com/maps?q=-22.5152347,-43.1738107&t=m&z=16&output=embed&iwloc=near">
+                </iframe>
+            </div>
+            <div class="street-view-container">
+                <a href="https://maps.app.goo.gl/bH7uyjXBM1sTBsVF7" target="_blank" class="btn-street-view">
+                    <span class="street-icon">👁️</span> 
+                    <span class="street-text">VER FACHADA NO MAPA</span>
+                </a>
+            </div>
+            <p style="text-align: center; color: #555; font-size: 0.8rem; margin-top: 20px; margin-bottom: 10px;">Dizzy House Studio &copy; 2026</p>
+        </div>
+
+    </div>
+
+    <!-- Botão Admin Flutuante -->
+    <a href="admin.html" class="float-admin-btn" title="Acesso Admin">⚙️</a>
+
+    <!-- Notification Popup -->
+    <div id="info-popup" class="info-popup">
+        Dúvidas? Toque no ícone <span style="color:#fff; text-shadow:0 0 5px #fff; font-weight:bold;">(i)</span> para mais informações.
+    </div>
+
+    </div>
+
+    <!-- More Info Modal (FORA do page-content para não ser afetado pelo blur) -->
+    <div id="more-info-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; height:-webkit-fill-available; background:rgba(0,0,0,0.6); z-index:10000; align-items:center; justify-content:center; padding:20px; padding-top: max(40px, env(safe-area-inset-top)); padding-bottom: max(40px, env(safe-area-inset-bottom));">
+        <div class="neon-frame" style="max-width:500px; width:92%; max-height:70vh; display:flex; flex-direction:column; position:relative; background:#111; border: 1px solid var(--neon-red); box-shadow: 0 0 20px rgba(255, 0, 0, 0.2); padding:0; border-radius:12px; overflow:hidden;">
+            <h2 style="color:var(--neon-red); margin:0; padding:18px 18px 12px 18px; text-transform:uppercase; font-size: 1.2rem; letter-spacing: 1px; border-bottom: 1px solid #333; flex-shrink:0;">Informações Adicionais</h2>
+            <div id="more-info-content" style="color:#ddd; line-height:1.7; white-space:normal; word-wrap:break-word; overflow-wrap:break-word; font-size: 0.95rem; padding:15px 18px; overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; flex:1; min-height:0;">
+                Carregando informações...
+            </div>
+            <div style="padding:12px 18px; text-align:right; border-top:1px solid #333; flex-shrink:0;">
+                <button onclick="closeMoreInfo()" style="background:var(--neon-red); border:none; color:#000; font-size:0.9rem; font-weight:bold; cursor:pointer; padding:8px 20px; border-radius:6px; text-transform:uppercase; letter-spacing:1px;">✕ Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Carousel -->
+    <div id="portfolio-lightbox" class="lightbox-overlay">
+        <div class="lightbox-backdrop"></div>
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lb-close">✕</button>
+            <div class="lightbox-image-wrapper">
+                <span class="lightbox-counter" id="lb-counter">1 / 1</span>
+                <button class="lightbox-nav lb-prev" id="lb-prev">&#10094;</button>
+                <button class="lightbox-nav lb-next" id="lb-next">&#10095;</button>
+                <div class="lightbox-track" id="lb-track"></div>
+            </div>
+            <div class="lightbox-info">
+                <span class="lb-price" id="lb-price"></span>
+                <span class="lb-desc" id="lb-desc"></span>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js?v=20260313a"></script>
+</body>
+</html>
